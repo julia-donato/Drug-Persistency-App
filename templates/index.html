@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Model Prediction</title>
+  </head>
+  <body>
+    <h1>Model Prediction</h1>
+    <form method="POST" action="{{ url_for('predict') }}">
+      <label for="feature1">Dexa_Freq_During_Rx:</label>
+      <input type="text" name="feature1"><br>
+      <label for="feature2">Dexa_During_Rx(Yes:1 No:0):</label>
+      <input type="text" name="feature2"><br>
+      <label for="feature3">Comorb_Long_Term_Current_Drug_Therapy(Yes:1 No:0):</label>
+      <input type="text" name="feature3"><br>
+      <label for="feature4">Comorb_Encounter_For_Screening_For_Malignant_Neoplasms(Yes:1 No:0):</label>
+      <input type="text" name="feature4"><br>
+      <label for="feature5">Comorb_Encounter_For_Immunization(Yes:1 No:0):</label>
+      <input type="text" name="feature5"><br>
+      <input type="submit" value="Predict"><br>
+    </form>
+    {% if prediction is defined %}
+      {% if prediction == 1 %}
+        <p>The predicted label is Persistent.</p>
+      {% elif prediction == 0 %}
+        <p>The predicted label is Non-Persistent.</p>
+      {% else %}
+        <p>Please make sure your data is entered in the correct format.</p>
+      {% endif %}
+    {% endif %}
+  </body>
+</html>
